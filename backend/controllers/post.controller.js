@@ -1,10 +1,10 @@
 import Notification from "../models/notification.model.js";
-import User from "../models/user.model.js";
 import Post from "../models/post.model.js";
+import User from "../models/user.model.js";
 import { v2 as cloudinary } from "cloudinary";
 
 export const createPost = async (req, res) => {
-    try {
+	try {
 		const { text } = req.body;
 		let { img } = req.body;
 		const userId = req.user._id.toString();
@@ -34,6 +34,7 @@ export const createPost = async (req, res) => {
 		console.log("Error in createPost controller: ", error);
 	}
 };
+
 export const deletePost = async (req, res) => {
 	try {
 		const post = await Post.findById(req.params.id);
@@ -85,6 +86,7 @@ export const commentOnPost = async (req, res) => {
 		res.status(500).json({ error: "Internal server error" });
 	}
 };
+
 export const likeUnlikePost = async (req, res) => {
 	try {
 		const userId = req.user._id;
@@ -126,6 +128,7 @@ export const likeUnlikePost = async (req, res) => {
 		res.status(500).json({ error: "Internal server error" });
 	}
 };
+
 export const getAllPosts = async (req, res) => {
 	try {
 		const posts = await Post.find()
